@@ -52,12 +52,26 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            Socket _socket=null;
+
             if(ipInput.getText().toString().matches("")) {
                 statText.setText("input server IP Address first!");
                 return;
             }
+            iPNumber=ipInput.getText().toString();
 
+            new Thread(new ClientThread()).start();
+
+        }
+
+    };
+
+    public class ClientThread implements Runnable
+    {
+
+        @Override
+        public  void run()
+        {
+            Socket _socket=null;
             try
             {
                 _socket = new Socket(iPNumber,portNumber);
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
             catch (Exception exc)
             {
-                statText.setText(exc.toString()+"voila");
+                statText.setText(exc.toString());
             }
             finally
             {
@@ -86,11 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-
         }
-
-    };
-
+    }
 
 
     @Override
