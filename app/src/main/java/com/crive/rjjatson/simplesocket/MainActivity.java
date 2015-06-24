@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         {
 
             if(ipInput.getText().toString().matches("")) {
-                statText.setText("input server IP Address first!");
+                Toast.makeText(getApplicationContext(),"Isi IP dulu", Toast.LENGTH_SHORT).show();
                 return;
             }
             iPNumber=ipInput.getText().toString();
